@@ -6,7 +6,7 @@ function getComputerChoice(min = 0, max=3){
         return "Paper";
     } else
         return "Scissors";
-  }
+}
   
 function normalizeLowerCase(text){
     return text.toLowerCase();
@@ -38,23 +38,12 @@ function playRound(playerSelection, computerSelection){
 function game(){
     let playerSelection;
     let you = 0, computer = 0;
-    for(let i = 0; i<5; i++){
-        playerSelection = window.prompt("Choose your hand")
-        let game = playRound(playerSelection, getComputerChoice());
-        console.log(game);
-        let results = game.substring(0, game.indexOf(" !!"));
-        if(results == "You Win"){
-            you++;
-        } else if(results=="You Lose"){
-            computer++;
-        }
-    }
     if(you > computer){
         console.log("YOU WON THE GAME!!!");
     } else if(computer > you) {
         console.log("YOU LOST THE GAME :(")
     } else
-        console.log("IT'S A TIE!!")
-  }
+        console.log("IT'S A TIE!!") 
+}
   
   game();
