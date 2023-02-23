@@ -1,11 +1,13 @@
+let you = 0, computer = 0;
+
 function getComputerChoice(min = 0, max=3){
     let choice = Math.floor(Math.random() * (max - min) ) + min;
     if(choice == 0){
-        return "Rock";
+        return "rock";
     } else if(choice == 1) {
-        return "Paper";
+        return "paper";
     } else
-        return "Scissors";
+        return "scissors";
 }
   
 function normalizeLowerCase(text){
@@ -15,29 +17,43 @@ function normalizeLowerCase(text){
 function normalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
-  
+
 function playRound(playerSelection, computerSelection){
     console.log(playerSelection);
-    playerSelection = normalizeLowerCase(playerSelection);
-    computerSelection = normalizeLowerCase(computerSelection);
+    let text = document.querySelector('#text');
     if(playerSelection == computerSelection){
-        return `Both Lose !! ${normalizeFirstLetter(playerSelection)} equals to ${normalizeFirstLetter(computerSelection)}`;
+        text.textContent = `Both Lose !! ${normalizeFirstLetter(playerSelection)} equals to ${normalizeFirstLetter(computerSelection)}`;
     } else {
         if(playerSelection == "rock" && computerSelection == "scissors"){
-            return `You Win !! ${normalizeFirstLetter(playerSelection)} beats ${normalizeFirstLetter(computerSelection)}`;
+            text.textContent = `You Win !! ${normalizeFirstLetter(playerSelection)} beats ${normalizeFirstLetter(computerSelection)}`;
         } else if(playerSelection == "paper" && computerSelection == "rock"){
-            return `You Win !! ${normalizeFirstLetter(playerSelection)} beats ${normalizeFirstLetter(computerSelection)}`;
+            text.textContent = `You Win !! ${normalizeFirstLetter(playerSelection)} beats ${normalizeFirstLetter(computerSelection)}`;
         } else if(playerSelection == "scissors" && computerSelection == "paper"){
-            return `You Win !! ${normalizeFirstLetter(playerSelection)} beats ${normalizeFirstLetter(computerSelection)}`;
+            text.textContent = `You Win !! ${normalizeFirstLetter(playerSelection)} beats ${normalizeFirstLetter(computerSelection)}`;
         } else {
-            return `You Lose !! ${normalizeFirstLetter(playerSelection)} is beaten by ${normalizeFirstLetter(computerSelection)}`;
+
+            text.textContent = `You Lose !! ${normalizeFirstLetter(playerSelection)} is beaten by ${normalizeFirstLetter(computerSelection)}`;
         }
     }
 }
+
+let buttonRock = document.querySelector('#rock');
+buttonRock.addEventListener('click', ()=>{
+    playRound('rock', getComputerChoice());
+})
+
+let buttonPaper = document.querySelector('#paper');
+buttonPaper.addEventListener('click', ()=>{
+    playRound('paper', getComputerChoice());
+})
+
+let buttonScissors = document.querySelector('#scissors');
+buttonScissors.addEventListener('click', ()=>{
+    playRound('scissors', getComputerChoice());
+})
+
   
 function game(){
-    let playerSelection;
-    let you = 0, computer = 0;
     if(you > computer){
         console.log("YOU WON THE GAME!!!");
     } else if(computer > you) {
