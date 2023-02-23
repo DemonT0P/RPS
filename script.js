@@ -25,16 +25,28 @@ function playRound(playerSelection, computerSelection){
         text.textContent = `Both Lose !! ${normalizeFirstLetter(playerSelection)} equals to ${normalizeFirstLetter(computerSelection)}`;
     } else {
         if(playerSelection == "rock" && computerSelection == "scissors"){
+            you++;
             text.textContent = `You Win !! ${normalizeFirstLetter(playerSelection)} beats ${normalizeFirstLetter(computerSelection)}`;
         } else if(playerSelection == "paper" && computerSelection == "rock"){
+            you++;
             text.textContent = `You Win !! ${normalizeFirstLetter(playerSelection)} beats ${normalizeFirstLetter(computerSelection)}`;
         } else if(playerSelection == "scissors" && computerSelection == "paper"){
+            you++;
             text.textContent = `You Win !! ${normalizeFirstLetter(playerSelection)} beats ${normalizeFirstLetter(computerSelection)}`;
         } else {
-
+            computer++;
             text.textContent = `You Lose !! ${normalizeFirstLetter(playerSelection)} is beaten by ${normalizeFirstLetter(computerSelection)}`;
         }
     }
+    if(you == 5 || computer == 5){
+        if(you > computer){
+            text.textContent = "YOU WON THE GAME!!!";
+        } else if(computer > you) {
+            text.textContent = "YOU LOST THE GAME :(";
+        }
+        you = 0, computer=0;
+    } 
+    
 }
 
 let buttonRock = document.querySelector('#rock');
@@ -51,15 +63,3 @@ let buttonScissors = document.querySelector('#scissors');
 buttonScissors.addEventListener('click', ()=>{
     playRound('scissors', getComputerChoice());
 })
-
-  
-function game(){
-    if(you > computer){
-        console.log("YOU WON THE GAME!!!");
-    } else if(computer > you) {
-        console.log("YOU LOST THE GAME :(")
-    } else
-        console.log("IT'S A TIE!!") 
-}
-  
-  game();
